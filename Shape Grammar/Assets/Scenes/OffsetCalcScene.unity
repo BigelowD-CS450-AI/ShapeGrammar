@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   generationDistance: 50
-  maxIterations: 30
+  maxIterations: 300
 --- !u!4 &277246710
 Transform:
   m_ObjectHideFlags: 0
