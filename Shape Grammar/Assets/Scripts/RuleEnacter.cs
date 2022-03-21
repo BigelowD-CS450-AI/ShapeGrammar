@@ -35,12 +35,11 @@ public class RuleEnacter : MonoBehaviour
                 newObjShape.sidesUsed[Side.south] = true;
                 break;
         }
-        newObj.transform.rotation = Quaternion.Euler(newObj.transform.eulerAngles.x, rotation, newObj.transform.eulerAngles.x);
+        newObj.transform.rotation = Quaternion.Euler(newObj.transform.eulerAngles.x, newObj.transform.eulerAngles.y + rotation, newObj.transform.eulerAngles.x);
         newObj.transform.position = new Vector3(inputObj.transform.position.x, newObj.transform.position.y, inputObj.transform.position.z);
         newObj.transform.position += newObj.transform.forward * rule.posOffset.z  + newObj.transform.right * rule.posOffset.x;
         //if it comes in with all sides terminated, set to terminal
-        if (!newObjShape.sidesUsed.ContainsValue(false))
-            newObjShape.terminal = true;
+        newObjShape.terminal = newObjShape.CheckAllSidesUsed();
         return newObj.GetComponent<Shape>();
     }
 }

@@ -52,9 +52,13 @@ public class Shape : MonoBehaviour
             if (sidesUsed[side] == false)
                 unusedSides.Add(side);
         //if only one unused side it will become terminal once we use it this pass
+        if (unusedSides.Count == 0)
+            return Side.none;
         Side SelectedSide = unusedSides[random.Next(unusedSides.Count)];
         sidesUsed[SelectedSide] = true;
         CheckAllSidesUsed();
+        //Debug.Log("Termil CHeck returened " + CheckAllSidesUsed());
+
         return SelectedSide;
     }
 
@@ -65,5 +69,5 @@ public class Shape : MonoBehaviour
     }
 }
 
-public enum Side { north, east, south, west};
+public enum Side { north, east, south, west, none};
 public enum Shape_Type { Great_Hall, Long_Wall, Medium_Building, Short_Wall, Small_Building, Small_Building_Stacked, Thick_Tower, Thin_Tower }

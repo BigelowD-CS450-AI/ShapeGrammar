@@ -42,6 +42,8 @@ public class ShapeManager : MonoBehaviour
         curIterations++;
         nonterminalShapes.TrueForAll(IsFilled);
         nonterminalShapes.RemoveAll(IsTerminal);
+        if (nonterminalShapes.Count == 0)
+            return;
         Shape shape = nonterminalShapes[random.Next(nonterminalShapes.Count)];
         Propagate(shape);
         //if (shapes[random.Next(shapes.Count)])
@@ -61,6 +63,8 @@ public class ShapeManager : MonoBehaviour
     private void Propagate(Shape shape)
     {
         Side side = shape.GetRandomUnsedSide();
+        if (side == Side.none)
+            return;
         Rule rule = GetRandomRule(shape.shape, side);
         Shape newShape = RuleEnacter.Enact(rule, side, shape);
         //if not in generation bounds new shape is terminal
@@ -79,10 +83,11 @@ public class ShapeManager : MonoBehaviour
 
     private bool CheckInGenerationbounds(Shape shape)
     {
-        return (shape.transform.position.x < generationDistance &&
+        bool inBounds = (shape.transform.position.x < generationDistance &&
                 shape.transform.position.x > -generationDistance &&
                 shape.transform.position.z < generationDistance &&
                 shape.transform.position.z > -generationDistance);
+        return inBounds;
     }
     
     private Rule GetRandomRule(Shape_Type shape, Side side)
