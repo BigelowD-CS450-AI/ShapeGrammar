@@ -1,5 +1,5 @@
 # ShapeGrammar
-An implantation of the shape grammar procedural generation method. This builds castles
+An implementation of the shape grammar procedural generation method. This builds castles
 
 https://bigelowd-cs450-ai.github.io/ShapeGrammar/
 
